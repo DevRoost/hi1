@@ -15,7 +15,7 @@ const ApplicationsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Rejected',
+    status: 'Hired',
 
     // type code here for "relation_one" field
   },
@@ -25,7 +25,17 @@ const ApplicationsData = [
 
     // type code here for "relation_one" field
 
-    status: 'UnderReview',
+    status: 'InterviewScheduled',
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    // type code here for "relation_one" field
+
+    // type code here for "relation_one" field
+
+    status: 'Rejected',
 
     // type code here for "relation_one" field
   },
@@ -61,7 +71,7 @@ const JobPostingsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Open',
+    status: 'Closed',
 
     // type code here for "relation_one" field
   },
@@ -70,6 +80,18 @@ const JobPostingsData = [
     title: 'Marketing Manager',
 
     description: 'Lead the marketing team and strategy.',
+
+    // type code here for "relation_one" field
+
+    status: 'Closed',
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    title: 'Product Manager',
+
+    description: 'Oversee product development and strategy.',
 
     // type code here for "relation_one" field
 
@@ -86,7 +108,7 @@ const WorkflowsData = [
     description:
       'When a new job is posted, email notifications should be sent to relevant recruiters and managers.',
 
-    type: 'ReminderNotifications',
+    type: 'InterviewScheduling',
 
     // type code here for "relation_one" field
   },
@@ -97,7 +119,7 @@ const WorkflowsData = [
     description:
       'When an application is received, an acknowledgement email should be automatically sent to the applicant.',
 
-    type: 'OnboardingProcess',
+    type: 'InterviewScheduling',
 
     // type code here for "relation_one" field
   },
@@ -108,7 +130,18 @@ const WorkflowsData = [
     description:
       'Once an application is shortlisted, an automated scheduling system should send interview invites to both the candidate and the interview panel.',
 
-    type: 'OnboardingProcess',
+    type: 'ApplicationAcknowledgement',
+
+    // type code here for "relation_one" field
+  },
+
+  {
+    name: 'Status Updates',
+
+    description:
+      'Applicants should receive automated updates on their application status.',
+
+    type: 'ComplianceChecks',
 
     // type code here for "relation_one" field
   },
@@ -125,6 +158,10 @@ const OrganizationsData = [
 
   {
     name: 'Gamma LLC',
+  },
+
+  {
+    name: 'Delta Ltd',
   },
 ];
 
@@ -163,6 +200,17 @@ async function associateUserWithOrganization() {
   if (User2?.setOrganization) {
     await User2.setOrganization(relatedOrganization2);
   }
+
+  const relatedOrganization3 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const User3 = await Users.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (User3?.setOrganization) {
+    await User3.setOrganization(relatedOrganization3);
+  }
 }
 
 async function associateApplicationWithApplicant() {
@@ -197,6 +245,17 @@ async function associateApplicationWithApplicant() {
   });
   if (Application2?.setApplicant) {
     await Application2.setApplicant(relatedApplicant2);
+  }
+
+  const relatedApplicant3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const Application3 = await Applications.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Application3?.setApplicant) {
+    await Application3.setApplicant(relatedApplicant3);
   }
 }
 
@@ -233,6 +292,17 @@ async function associateApplicationWithJob() {
   if (Application2?.setJob) {
     await Application2.setJob(relatedJob2);
   }
+
+  const relatedJob3 = await JobPostings.findOne({
+    offset: Math.floor(Math.random() * (await JobPostings.count())),
+  });
+  const Application3 = await Applications.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Application3?.setJob) {
+    await Application3.setJob(relatedJob3);
+  }
 }
 
 async function associateApplicationWithOrganization() {
@@ -267,6 +337,17 @@ async function associateApplicationWithOrganization() {
   });
   if (Application2?.setOrganization) {
     await Application2.setOrganization(relatedOrganization2);
+  }
+
+  const relatedOrganization3 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const Application3 = await Applications.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Application3?.setOrganization) {
+    await Application3.setOrganization(relatedOrganization3);
   }
 }
 
@@ -303,6 +384,17 @@ async function associateJobPostingWithPosted_by() {
   if (JobPosting2?.setPosted_by) {
     await JobPosting2.setPosted_by(relatedPosted_by2);
   }
+
+  const relatedPosted_by3 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const JobPosting3 = await JobPostings.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (JobPosting3?.setPosted_by) {
+    await JobPosting3.setPosted_by(relatedPosted_by3);
+  }
 }
 
 async function associateJobPostingWithOrganization() {
@@ -338,6 +430,17 @@ async function associateJobPostingWithOrganization() {
   if (JobPosting2?.setOrganization) {
     await JobPosting2.setOrganization(relatedOrganization2);
   }
+
+  const relatedOrganization3 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const JobPosting3 = await JobPostings.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (JobPosting3?.setOrganization) {
+    await JobPosting3.setOrganization(relatedOrganization3);
+  }
 }
 
 async function associateWorkflowWithOrganization() {
@@ -372,6 +475,17 @@ async function associateWorkflowWithOrganization() {
   });
   if (Workflow2?.setOrganization) {
     await Workflow2.setOrganization(relatedOrganization2);
+  }
+
+  const relatedOrganization3 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const Workflow3 = await Workflows.findOne({
+    order: [['id', 'ASC']],
+    offset: 3,
+  });
+  if (Workflow3?.setOrganization) {
+    await Workflow3.setOrganization(relatedOrganization3);
   }
 }
 

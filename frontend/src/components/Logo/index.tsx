@@ -7,9 +7,11 @@ type Props = {
 export default function Logo({ className = '' }: Props) {
   return (
     <img
-      src={'https://flatlogic.com/logo.svg'}
+      src={
+        'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=230,fit=crop,q=95/Y4L4Nj5L07hQlgnn/1-dOqb5On1WRhQG98w.png'
+      }
       className={className}
-      alt={'Flatlogic logo'}
+      alt={'Starkien Tech logo'}
     ></img>
   );
 }

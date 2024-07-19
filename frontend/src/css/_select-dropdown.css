@@ -1,0 +1,28 @@
+.react-select__control {
+  @apply bg-skyBlueTheme-cardColor  rounded-lg     dark:bg-dark-800 dark:border-dark-700 !important;
+}
+
+.react-select__single-value {
+  @apply text-primaryText  dark:text-white !important;
+}
+
+.react-select__menu {
+  @apply bg-skyBlueTheme-cardColor  dark:border-dark-700;
+}
+
+.react-select__menu-list {
+  @apply bg-skyBlueTheme-cardColor dark:bg-dark-800 dark:border-dark-700 dark:rounded !important;
+}
+
+.react-select__option--is-focused {
+  @apply bg-skyBlueTheme-cardColor text-primaryText dark:bg-dark-800 dark:text-white hover:dark:bg-dark-700 hover:dark:text-white !important;
+}
+
+.react-select__option--is-selected,
+.react-select__option--is-selected:hover {
+  @apply bg-skyBlueTheme-cardColor dark:bg-dark-600 !important;
+}
+
+.react-select__multi-value__remove {
+  @apply text-skyBlueTheme-cardColor dark:bg-dark-600 dark:text-white hover:dark:bg-red-300 hover:dark:text-red-600 !important;
+}
